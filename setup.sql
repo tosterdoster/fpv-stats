@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS fpv_stats CHARACTER SET utf8mb4;
+USE fpv_stats;
+
+CREATE TABLE IF NOT EXISTS players (
+    uid VARCHAR(64) PRIMARY KEY,
+    nickname VARCHAR(64) NOT NULL,
+    kills INT DEFAULT 0,
+    deaths INT DEFAULT 0,
+    assists INT DEFAULT 0,
+    score INT DEFAULT 0,
+    last_seen DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE USER IF NOT EXISTS 'fpv'@'localhost' IDENTIFIED BY 'fpv_pass_2026';
+GRANT ALL ON fpv_stats.* TO 'fpv'@'localhost';
+FLUSH PRIVILEGES;

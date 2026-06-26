@@ -1,0 +1,15 @@
+[Unit]
+Description=FPV Kamikaze Drone Stats Reader
+After=network.target mariadb.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 120
+ExecStart=/usr/bin/python3 /opt/fpv_live.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
