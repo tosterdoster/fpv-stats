@@ -1,14 +1,14 @@
 <?php
 $db = new mysqli('127.0.0.1', 'fpv', 'fpv_pass_2026', 'fpv_stats');
 $db->set_charset('utf8mb4');
-$rows = $db->query("SELECT nickname, kills, deaths, assists, score FROM players ORDER BY score DESC, kills DESC");
+$rows = $db->query("SELECT nickname, kills, deaths, assists, score FROM players ORDER BY kills DESC, score DESC");
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>КАРАТЕЛЬ — Статистика</title>
+<title>FPV STATS — Статистика</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0a0a;color:#e0e0e0;font-family:'Segoe UI',Arial,sans-serif;padding:10px}
@@ -47,7 +47,7 @@ td:nth-child(2){text-align:left}
 </style>
 </head>
 <body>
-<h1>КАРАТЕЛЬ</h1>
+<h1>FPV STATS</h1>
 <div class="sub">СТАТИСТИКА СЕРВЕРА</div>
 <div class="table-wrap">
 <table>

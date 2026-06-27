@@ -81,7 +81,7 @@ def read_obj(obj):
     raw=rm(obj,16)
     if len(raw)<16:return None
     k,d,a,s=struct.unpack_from('<iiii',raw)
-    if not(-9999<=k<=9999 and -9999<=d<=9999 and -9999<=a<=9999 and -999999<=s<=999999):return None
+    if not(0<=k<=999 and 0<=d<=999 and 0<=a<=999 and -99999<=s<=99999):return None
     if s!=0 and s%50!=0:return None
     name=fstr(obj+OFF_NAME)
     if not name or not is_valid_name(name):return None
@@ -233,6 +233,11 @@ while True:
                 rows.append((name,0,0,0,0,r[5]))
             else:
                 zero_since.pop(name,None)
+                if name in last_good:
+                    ok,od,oa,os_,ouid,ots=last_good[name]
+                    dk=k-ok;dd=d-od;da=a-oa
+                    if dk>5 or dd>3 or da>5 or dk<-ok or dd<-od or da<-oa:
+                        continue
                 last_good[name]=(k,d,a,s,r[5],now)
                 rows.append((name,k,d,a,s,r[5]))
                 uid=r[5] if r[5]!='—' else uid_cache.get(name,'')
